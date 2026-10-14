@@ -834,24 +834,24 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
   const textMuted = darkMode ? 'text-[#8E8980]' : 'text-[#6E685F]'
 
   return (
-    <div className={`min-h-screen ${pageBg} flex justify-center font-sans antialiased selection:bg-emerald-500 selection:text-white transition-colors duration-300`}>
+    <div className={`min-h-screen ${pageBg} w-full max-w-full overflow-x-hidden flex justify-center font-sans antialiased selection:bg-emerald-500 selection:text-white transition-colors duration-300`}>
       {/* Mobile Shell Frame */}
-      <div className={`w-full max-w-md ${shellBg} min-h-screen shadow-2xl border-x ${borderSubtle} flex flex-col relative pb-28`}>
+      <div className={`w-full max-w-md ${shellBg} min-h-screen shadow-2xl sm:border-x ${borderSubtle} flex flex-col relative pb-28 min-w-0 overflow-x-hidden`}>
 
         {/* Dynamic Island Header Toast */}
-        <div className="sticky top-0 z-40 px-3 pt-2 pb-1.5 backdrop-blur-xl bg-inherit/90">
-          <div className="flex items-center justify-between gap-2">
+        <div className="sticky top-0 z-40 px-2.5 pt-2 pb-1.5 backdrop-blur-xl bg-inherit/90 w-full max-w-full overflow-hidden">
+          <div className="flex items-center justify-between gap-1.5 w-full min-w-0">
             {/* Apple Dynamic Island Pill */}
-            <div className={`flex-1 flex items-center justify-between px-3.5 py-1.5 rounded-full border transition-all duration-300 ${
+            <div className={`flex-1 min-w-0 flex items-center justify-between px-3 py-1.5 rounded-full border transition-all duration-300 ${
               darkMode ? 'bg-[#161616] border-neutral-700/80 text-white' : 'bg-white border-[#E4DDD2] text-[#121110] shadow-sm'
             }`}>
-              <div className="flex items-center gap-2 overflow-hidden">
+              <div className="flex items-center gap-1.5 min-w-0 overflow-hidden">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                <span className="text-[11px] font-medium tracking-tight truncate">
+                <span className="text-[10px] font-medium tracking-tight truncate block">
                   {islandNotification || t.radarStatus}
                 </span>
               </div>
-              <Activity size={13} className="text-emerald-500 shrink-0 ml-1" />
+              <Activity size={12} className="text-emerald-500 shrink-0 ml-1" />
             </div>
 
             {/* Quick Controls Pill */}
@@ -859,31 +859,31 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
               {/* Dark/Light Switcher */}
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className={`p-1.5 rounded-full border transition active:scale-95 ${
+                className={`w-7 h-7 flex items-center justify-center rounded-full border transition active:scale-95 shrink-0 ${
                   darkMode ? 'bg-[#161616] border-neutral-700 text-[#E8E2D8]' : 'bg-white border-[#E4DDD2] text-[#121110] shadow-sm'
                 }`}
                 title="Toggle Theme"
               >
-                {darkMode ? <Sun size={14} className="text-amber-400" /> : <Moon size={14} />}
+                {darkMode ? <Sun size={13} className="text-amber-400" /> : <Moon size={13} />}
               </button>
 
               {/* Language Selector */}
               <select
                 value={lang}
                 onChange={e => setLang(e.target.value as Lang)}
-                className={`text-[11px] font-semibold tracking-tight border rounded-full px-2 py-1 outline-none cursor-pointer transition ${
+                className={`text-[10px] font-semibold tracking-tight border rounded-full px-1.5 py-1 outline-none cursor-pointer transition shrink-0 ${
                   darkMode ? 'bg-[#161616] border-neutral-700 text-[#E8E2D8]' : 'bg-white border-[#E4DDD2] text-[#121110] shadow-sm'
                 }`}
               >
                 <option value="en">EN</option>
-                <option value="te">తెలుగు</option>
-                <option value="hi">हिंदी</option>
+                <option value="te">తె</option>
+                <option value="hi">हिं</option>
               </select>
 
               {/* Alerts Bell */}
               <button
                 onClick={() => setView('notifications')}
-                className={`relative p-1.5 rounded-full border transition active:scale-95 ${
+                className={`relative w-7 h-7 flex items-center justify-center rounded-full border transition active:scale-95 shrink-0 ${
                   view === 'notifications'
                     ? 'bg-emerald-600 text-white border-emerald-600'
                     : darkMode
@@ -892,9 +892,9 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
                 }`}
                 title="Notifications"
               >
-                <Bell size={14} />
+                <Bell size={13} />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-emerald-500 text-black text-[9px] font-black rounded-full w-3.5 h-3.5 flex items-center justify-center">
+                  <span className="absolute -top-0.5 -right-0.5 bg-emerald-500 text-black text-[8px] font-black rounded-full w-3.5 h-3.5 flex items-center justify-center">
                     {unreadCount}
                   </span>
                 )}
@@ -903,7 +903,7 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
               {/* Authority Console Shortcut */}
               <button
                 onClick={() => setView('mod')}
-                className={`p-1.5 rounded-full border transition active:scale-95 ${
+                className={`w-7 h-7 flex items-center justify-center rounded-full border transition active:scale-95 shrink-0 ${
                   view === 'mod'
                     ? 'bg-emerald-600 text-white border-emerald-600'
                     : darkMode
@@ -912,14 +912,14 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
                 }`}
                 title="Admin Console"
               >
-                <Shield size={14} />
+                <Shield size={13} />
               </button>
             </div>
           </div>
         </div>
 
         {/* Content Area */}
-        <main className="flex-1 px-4 pt-2 space-y-4">
+        <main className="flex-1 w-full max-w-full px-3.5 pt-2 space-y-4 min-w-0 overflow-x-hidden">
 
           {/* ================= VIEW 1: HOME ================= */}
           {view === 'home' && (
@@ -954,7 +954,7 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
                       <span>27°C</span>
                       <span className={`text-xs font-semibold ${textMuted}`}>Heavy Downpour</span>
                     </div>
-                    <div className={`text-[11px] ${textMuted} flex items-center gap-2 pt-0.5`}>
+                    <div className={`text-[11px] ${textMuted} flex items-center flex-wrap gap-x-2 gap-y-0.5 pt-0.5`}>
                       <span>H: 29° L: 22°</span>
                       <span>•</span>
                       <span>Humidity 88%</span>
@@ -1427,16 +1427,16 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
                 </div>
 
                 {/* Simulated Radar Preview */}
-                <div className={`p-3 rounded-2xl border ${borderSubtle} ${darkMode ? 'bg-[#161616]' : 'bg-[#F6F3ED]'} flex items-center justify-between`}>
-                  <div className="flex items-center gap-2.5 overflow-hidden">
+                <div className={`p-3 rounded-2xl border ${borderSubtle} ${darkMode ? 'bg-[#161616]' : 'bg-[#F6F3ED]'} flex items-center justify-between gap-2 min-w-0`}>
+                  <div className="flex items-center gap-2.5 min-w-0 overflow-hidden flex-1">
                     <div className="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 text-emerald-600 dark:text-emerald-400">
                       <MapPin size={18} />
                     </div>
-                    <div className="truncate">
+                    <div className="min-w-0 flex-1 truncate">
                       <div className="text-xs font-bold truncate">
                         {landmark || 'No landmark specified yet'}
                       </div>
-                      <div className={`text-[10px] ${textMuted}`}>
+                      <div className={`text-[10px] ${textMuted} truncate`}>
                         {gpsLocked ? '17.4325° N, 78.4071° E • Hyderabad Municipal Zone' : 'Tap Auto GPS to acquire satellite coordinates'}
                       </div>
                     </div>
@@ -1924,7 +1924,7 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
               </div>
 
               {/* Quick Inquiry Pills */}
-              <div className="py-2 flex gap-1.5 overflow-x-auto no-scrollbar">
+              <div className="py-2 flex gap-1.5 overflow-x-auto no-scrollbar w-full max-w-full min-w-0">
                 {[
                   'Status of GT-8491?',
                   'Explain IMD Alert',
@@ -2079,7 +2079,7 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
               })()}
 
               {/* 3. 24-Hour Forecast Horizontal Carousel */}
-              <div className={`p-4 rounded-3xl border ${cardBg} space-y-3`}>
+              <div className={`p-4 rounded-3xl border ${cardBg} space-y-3 overflow-hidden w-full max-w-full min-w-0`}>
                 <div className="flex items-center justify-between px-0.5">
                   <div className="flex items-center gap-1.5">
                     <Clock size={13} className="text-emerald-600 dark:text-emerald-400" />
@@ -2088,7 +2088,7 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
                   <span className={`text-[10px] font-semibold ${textMuted}`}>Live Doppler Sync</span>
                 </div>
 
-                <div className="overflow-x-auto no-scrollbar flex gap-2.5 pb-1">
+                <div className="overflow-x-auto no-scrollbar flex gap-2.5 pb-1 w-full max-w-full">
                   {HOURLY_FORECAST.map((item, idx) => (
                     <div
                       key={idx}
@@ -2293,7 +2293,7 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
               </div>
 
               {/* Severity Filter Tabs */}
-              <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
+              <div className="flex gap-1.5 overflow-x-auto no-scrollbar w-full max-w-full min-w-0 py-0.5">
                 {[
                   { id: 'all', label: `All Notices (${WEATHER_ALERTS.length})` },
                   { id: 'red', label: '🔴 Red Alerts (1)' },
@@ -2496,8 +2496,8 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
         </main>
 
         {/* Apple-Grade Floating Dock Navigation Bar */}
-        <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-1.5rem)] max-w-md z-40">
-          <div className="backdrop-blur-2xl bg-black/90 dark:bg-[#121212]/95 border border-white/10 rounded-full px-2 py-1.5 flex justify-between items-center shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
+        <nav className="fixed bottom-3 inset-x-2 max-w-md mx-auto z-40 pointer-events-none">
+          <div className="pointer-events-auto backdrop-blur-2xl bg-black/90 dark:bg-[#121212]/95 border border-white/10 rounded-full p-1 flex justify-between items-center shadow-[0_16px_40px_rgba(0,0,0,0.45)] w-full">
             {[
               { id: 'home', label: t.home, icon: Home },
               { id: 'weather', label: t.weather, icon: CloudRain },
@@ -2511,14 +2511,14 @@ Latest: ${top.id} (${top.category}) is currently ${formatStatus(top.status)} at 
                 <button
                   key={id}
                   onClick={() => setView(id as any)}
-                  className={`flex items-center gap-1 py-1.5 px-2.5 rounded-full transition-all duration-200 active:scale-95 ${
+                  className={`flex-1 flex items-center justify-center gap-1 py-1.5 px-1 rounded-full transition-all duration-200 active:scale-95 min-w-0 ${
                     active
                       ? 'bg-white/15 text-emerald-400 font-bold'
                       : 'text-neutral-400 hover:text-white font-medium'
                   }`}
                 >
-                  <Icon size={16} />
-                  {active && <span className="text-[10px] tracking-tight">{label}</span>}
+                  <Icon size={16} className="shrink-0" />
+                  {active && <span className="text-[10px] tracking-tight truncate max-w-[48px]">{label}</span>}
                 </button>
               )
             })}
